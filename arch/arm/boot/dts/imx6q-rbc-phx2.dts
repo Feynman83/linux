@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: GPL-2.0-only
+/*
+ * Copyright 2020 Xbrother, Inc.
+ *
+ * Author: Feynman Lee <codingmonkey83@gmail.com>
+ */
+/dts-v1/;
+#include "imx6q.dtsi"
+#include "imx6qdl-rbc.dtsi"
+
+/ {
+	model = "Xbrother RainbowC i.MX6 Quad Board";
+	compatible = "rex,imx6q-rbc", "fsl,imx6q";
+
+	memory@10000000 {
+		device_type = "memory";
+		reg = <0x10000000 0x80000000>;
+	};
+};
