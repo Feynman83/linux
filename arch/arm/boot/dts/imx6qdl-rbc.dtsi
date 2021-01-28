@@ -37,6 +37,32 @@
 			enable-active-high;
 		};
 
+		reg_hub1_rst: regulator@2 {
+			compatible = "regulator-fixed";
+			reg = <2>;
+			pinctrl-names = "default";
+			regulator-name = "hub1_rst";
+			regulator-min-microvolt = <3300000>;
+			regulator-max-microvolt = <3300000>;
+			gpio = <&gpio6 4 GPIO_ACTIVE_HIGH>;
+			enable-active-high;
+			regulator-always-on;
+			regulator-boot-on;
+		};
+
+		reg_hub2_rst: regulator@3 {
+			compatible = "regulator-fixed";
+			reg = <3>;
+			pinctrl-names = "default";
+			regulator-name = "hub2_rst";
+			regulator-min-microvolt = <3300000>;
+			regulator-max-microvolt = <3300000>;
+			gpio = <&gpio6 5 GPIO_ACTIVE_HIGH>;
+			enable-active-high;
+			regulator-always-on;
+			regulator-boot-on;
+		};
+
 		
 	};
 
@@ -195,7 +221,8 @@
 			fsl,pins = <
 				
 				
-
+				MX6QDL_PAD_CSI0_DAT18__GPIO6_IO04	0x80000000
+				MX6QDL_PAD_CSI0_DAT19__GPIO6_IO05	0x80000000
 				// MX6QDL_PAD_NANDF_D0__GPIO2_IO00 0x1b0b0
 				// MX6QDL_PAD_NANDF_D1__GPIO2_IO01 0x1b0b0
 				// MX6QDL_PAD_NANDF_D2__GPIO2_IO02 0x1b0b0
