@@ -17,3 +17,27 @@
 		reg = <0x10000000 0x80000000>;
 	};
 };
+
+	&uart2 {
+		pinctrl-0 = <&pinctrl_uart2 &pinctrl_uart2_rts>;
+		rts-gpios = <&gpio5 30 GPIO_ACTIVE_LOW>;
+    	linux,rs485-enabled-at-boot-time;
+	};
+
+	&uart3 {
+		pinctrl-0 = <&pinctrl_uart3 &pinctrl_uart3_rts>;
+		rts-gpios = <&gpio5 31 GPIO_ACTIVE_LOW>;
+		linux,rs485-enabled-at-boot-time;
+	};
+
+	&uart4 {
+		pinctrl-0 = <&pinctrl_uart4 &pinctrl_uart4_rts>;
+		rts-gpios = <&gpio6 0 GPIO_ACTIVE_LOW>;
+		linux,rs485-enabled-at-boot-time;
+	};
+
+	&uart5 {
+		pinctrl-0 = <&pinctrl_uart5 &pinctrl_uart5_rts>;
+		rts-gpios = <&gpio6 1 GPIO_ACTIVE_LOW>;
+		linux,rs485-enabled-at-boot-time;
+	};

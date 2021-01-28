@@ -327,7 +327,11 @@
 			fsl,pins = <
 				MX6QDL_PAD_GPIO_7__UART2_TX_DATA 	0x1b0b1 
 				MX6QDL_PAD_GPIO_8__UART2_RX_DATA 	0x1b0b1 
-				MX6QDL_PAD_KEY_ROW4__GPIO4_IO15 	0x4001b0b1
+			>;
+		};
+		pinctrl_uart2_rts: uart2grp_rts {
+			fsl,pins = <
+				MX6QDL_PAD_CSI0_DAT12__GPIO5_IO30 	0x4001b0b1
 			>;
 		};
 
@@ -335,25 +339,39 @@
 			fsl,pins = <
 				MX6QDL_PAD_EIM_D24__UART3_TX_DATA 	0x1b0b1 
 				MX6QDL_PAD_EIM_D25__UART3_RX_DATA 	0x1b0b1 
-				MX6QDL_PAD_KEY_COL2__GPIO4_IO10 	0x4001b0b1
+				
 			>;
 		};
-
+		pinctrl_uart3_rts: uart3grp_rts {
+			fsl,pins = <
+				MX6QDL_PAD_CSI0_DAT13__GPIO5_IO31 	0x4001b0b1
+			>;
+		};
+		
 		pinctrl_uart4: uart4grp {
 			fsl,pins = <
 				MX6QDL_PAD_KEY_COL0__UART4_TX_DATA 	0x1b0b1 
 				MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA 	0x1b0b1 
-				MX6QDL_PAD_KEY_COL3__GPIO4_IO12 	0x4001b0b1
 			>;
 		};
-		
+		pinctrl_uart4_rts: uart4grp_rts {
+			fsl,pins = <
+				MX6QDL_PAD_CSI0_DAT14__GPIO6_IO00 	0x4001b0b1
+			>;
+		};
+
 		pinctrl_uart5: uart5grp {
 			fsl,pins = <
 				MX6QDL_PAD_KEY_COL1__UART5_TX_DATA 	0x1b0b1 
 				MX6QDL_PAD_KEY_ROW1__UART5_RX_DATA 	0x1b0b1 
-				MX6QDL_PAD_KEY_COL4__GPIO4_IO14 	0x4001b0b1
 			>;
 		};
+		pinctrl_uart5_rts: uart5grp_rts {
+			fsl,pins = <
+				MX6QDL_PAD_CSI0_DAT15__GPIO6_IO01 	0x4001b0b1
+			>;
+		};
+
 
 		pinctrl_usbh1: usbh1grp {
 			fsl,pins = <
@@ -408,8 +426,6 @@
 &uart2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart2>;
-	rts-gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;
-    linux,rs485-enabled-at-boot-time;
 	status = "okay";
 	
 };
@@ -417,24 +433,18 @@
 &uart3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart3>;
-	rts-gpios = <&gpio4 10 GPIO_ACTIVE_HIGH>;
-    linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
 &uart4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart4>;
-	rts-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
-    linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
 &uart5 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart5>;
-	rts-gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>;
-    linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
