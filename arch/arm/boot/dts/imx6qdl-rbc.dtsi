@@ -408,24 +408,33 @@
 &uart2 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart2>;
+	rts-gpios = <&gpio4 15 GPIO_ACTIVE_HIGH>;
+    linux,rs485-enabled-at-boot-time;
 	status = "okay";
+	
 };
 
 &uart3 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart3>;
+	rts-gpios = <&gpio4 10 GPIO_ACTIVE_HIGH>;
+    linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
 &uart4 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart4>;
+	rts-gpios = <&gpio4 12 GPIO_ACTIVE_HIGH>;
+    linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 
 &uart5 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_uart5>;
+	rts-gpios = <&gpio4 14 GPIO_ACTIVE_HIGH>;
+    linux,rs485-enabled-at-boot-time;
 	status = "okay";
 };
 

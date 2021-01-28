@@ -2221,7 +2221,9 @@ static int imx_uart_probe_dt(struct imx_port *sport,
 
 	if (of_get_property(np, "fsl,inverted-rx", NULL))
 		sport->inverted_rx = 1;
-
+		
+	if (of_get_property(np, "linux,rs485-enabled-at-boot-time", NULL))
+        sport->port.rs485.flags |= SER_RS485_ENABLED;
 	return 0;
 }
 #else
