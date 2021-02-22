@@ -16,6 +16,16 @@
 		device_type = "memory";
 		reg = <0x10000000 0x80000000>;
 	};
+
+	gpio-keys {
+		compatible = "gpio-keys";
+		homepage-key {
+			gpios = <&gpio4 28 GPIO_ACTIVE_HIGH>;
+			linux,code = <KEY_MENU>;
+			label = "homepage key";
+			debounce-interval = <10>;
+		};
+	};
 };
 
 	&uart2 {
@@ -41,3 +51,5 @@
 		rts-gpios = <&gpio6 1 GPIO_ACTIVE_LOW>;
 		linux,rs485-enabled-at-boot-time;
 	};
+
+	
