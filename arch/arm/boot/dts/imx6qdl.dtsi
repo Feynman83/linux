@@ -41,9 +41,9 @@
 		serial2 = &uart3;
 		serial3 = &uart4;
 		serial4 = &uart5;
-		spi0 = &ecspi3;
-		spi1 = &ecspi1;
-		spi2 = &ecspi2;
+		spi0 = &ecspi1;
+		spi1 = &ecspi2;
+		spi2 = &ecspi3;
 		spi3 = &ecspi4;
 		usbphy0 = &usbphy1;
 		usbphy1 = &usbphy2;
@@ -318,16 +318,16 @@
 					status = "disabled";
 				};
 
-				ecspi1: spi@2008000 {
+				ecspi3: spi@2010000 {
 					#address-cells = <1>;
 					#size-cells = <0>;
 					compatible = "fsl,imx6q-ecspi", "fsl,imx51-ecspi";
-					reg = <0x02008000 0x4000>;
-					interrupts = <0 31 IRQ_TYPE_LEVEL_HIGH>;
-					clocks = <&clks IMX6QDL_CLK_ECSPI1>,
-						 <&clks IMX6QDL_CLK_ECSPI1>;
+					reg = <0x02010000 0x4000>;
+					interrupts = <0 33 IRQ_TYPE_LEVEL_HIGH>;
+					clocks = <&clks IMX6QDL_CLK_ECSPI3>,
+						 <&clks IMX6QDL_CLK_ECSPI3>;
 					clock-names = "ipg", "per";
-					dmas = <&sdma 3 8 1>, <&sdma 4 8 2>;
+					dmas = <&sdma 7 8 1>, <&sdma 8 8 2>;
 					dma-names = "rx", "tx";
 					status = "disabled";
 				};
@@ -346,20 +346,6 @@
 					status = "disabled";
 				};
 
-				ecspi3: spi@2010000 {
-					#address-cells = <1>;
-					#size-cells = <0>;
-					compatible = "fsl,imx6q-ecspi", "fsl,imx51-ecspi";
-					reg = <0x02010000 0x4000>;
-					interrupts = <0 33 IRQ_TYPE_LEVEL_HIGH>;
-					clocks = <&clks IMX6QDL_CLK_ECSPI3>,
-						 <&clks IMX6QDL_CLK_ECSPI3>;
-					clock-names = "ipg", "per";
-					dmas = <&sdma 7 8 1>, <&sdma 8 8 2>;
-					dma-names = "rx", "tx";
-					status = "disabled";
-				};
-
 				ecspi4: spi@2014000 {
 					#address-cells = <1>;
 					#size-cells = <0>;
@@ -373,6 +359,26 @@
 					dma-names = "rx", "tx";
 					status = "disabled";
 				};
+				
+				ecspi1: spi@2008000 {
+					#address-cells = <1>;
+					#size-cells = <0>;
+					compatible = "fsl,imx6q-ecspi", "fsl,imx51-ecspi";
+					reg = <0x02008000 0x4000>;
+					interrupts = <0 31 IRQ_TYPE_LEVEL_HIGH>;
+					clocks = <&clks IMX6QDL_CLK_ECSPI1>,
+						 <&clks IMX6QDL_CLK_ECSPI1>;
+					clock-names = "ipg", "per";
+					dmas = <&sdma 3 8 1>, <&sdma 4 8 2>;
+					dma-names = "rx", "tx";
+					status = "disabled";
+				};
+
+				
+
+				
+
+				
 
 				uart1: serial@2020000 {
 					compatible = "fsl,imx6q-uart", "fsl,imx21-uart";
