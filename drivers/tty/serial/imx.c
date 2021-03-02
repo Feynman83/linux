@@ -1936,6 +1936,7 @@ static int imx_uart_rs485_config(struct uart_port *port,
 	if (!sport->have_rtscts && !sport->have_rtsgpio)
 		rs485conf->flags &= ~SER_RS485_ENABLED;
 
+	rs485conf->flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
 	if (rs485conf->flags & SER_RS485_ENABLED) {
 		/* Enable receiver if low-active RTS signal is requested */
 		if (sport->have_rtscts &&  !sport->have_rtsgpio &&
@@ -2223,7 +2224,7 @@ static int imx_uart_probe_dt(struct imx_port *sport,
 		sport->inverted_rx = 1;
 		
 	if (of_get_property(np, "linux,rs485-enabled-at-boot-time", NULL))
-        sport->port.rs485.flags |= SER_RS485_ENABLED;
+        sport->port.rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
 	return 0;
 }
 #else
