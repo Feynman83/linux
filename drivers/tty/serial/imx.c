@@ -450,6 +450,8 @@ static void imx_uart_stop_tx(struct uart_port *port)
 	struct imx_port *sport = (struct imx_port *)port;
 	u32 ucr1, ucr4, usr2;
 	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
+	port->rs485.delay_rts_after_send=1;
+	
 	if (sport->tx_state == OFF)
 		return;
 
@@ -695,6 +697,7 @@ static void imx_uart_start_tx(struct uart_port *port)
 	struct imx_port *sport = (struct imx_port *)port;
 	u32 ucr1;
 	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
+	port->rs485.flags |= SER_RS485_RTS_ON_SEND;
 	if (!sport->port.x_char && uart_circ_empty(&port->state->xmit))
 		return;
 
@@ -1415,7 +1418,9 @@ static int imx_uart_startup(struct uart_port *port)
 	unsigned long flags;
 	int dma_is_inited = 0;
 	u32 ucr1, ucr2, ucr3, ucr4;
-
+	
+	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
+	
 	retval = clk_prepare_enable(sport->clk_per);
 	if (retval)
 		return retval;
@@ -1530,6 +1535,8 @@ static void imx_uart_shutdown(struct uart_port *port)
 	unsigned long flags;
 	u32 ucr1, ucr2, ucr4;
 
+	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
+	
 	if (sport->dma_is_enabled) {
 		dmaengine_terminate_sync(sport->dma_chan_tx);
 		if (sport->dma_is_txing) {
@@ -1813,7 +1820,8 @@ static const char *imx_uart_type(struct uart_port *port)
 static void imx_uart_config_port(struct uart_port *port, int flags)
 {
 	struct imx_port *sport = (struct imx_port *)port;
-
+	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
+	
 	if (flags & UART_CONFIG_TYPE)
 		sport->port.type = PORT_IMX;
 }
@@ -2224,8 +2232,11 @@ static int imx_uart_probe_dt(struct imx_port *sport,
 	if (of_get_property(np, "fsl,inverted-rx", NULL))
 		sport->inverted_rx = 1;
 		
-	if (of_get_property(np, "linux,rs485-enabled-at-boot-time", NULL))
-        sport->port.rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
+	// if (of_get_property(np, "linux,rs485-enabled-at-boot-time", NULL))
+	{
+		sport->port.rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
+	}
+        
 	return 0;
 }
 #else
