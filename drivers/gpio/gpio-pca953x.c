@@ -943,12 +943,13 @@ static int device_pca95xx_init(struct pca953x_chip *chip, u32 invert)
 		goto out;
 
 	/* set platform specific polarity inversion */
-	if (invert)
-		bitmap_fill(val, MAX_LINE);
-	else
-		bitmap_zero(val, MAX_LINE);
 
-	ret = pca953x_write_regs(chip, chip->regs->invert, val);
+	// if (invert)
+	// 	bitmap_fill(val, MAX_LINE);
+	// else
+	// 	bitmap_zero(val, MAX_LINE);
+
+	// ret = pca953x_write_regs(chip, chip->regs->invert, val);
 out:
 	return ret;
 }
