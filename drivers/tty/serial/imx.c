@@ -1650,6 +1650,7 @@ imx_uart_set_termios(struct uart_port *port, struct ktermios *termios,
 	unsigned long num, denom, old_ubir, old_ubmr;
 	uint64_t tdiv64;
 
+	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
 	/*
 	 * We only support CS7 and CS8.
 	 */
