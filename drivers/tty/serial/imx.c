@@ -449,7 +449,7 @@ static void imx_uart_stop_tx(struct uart_port *port)
 {
 	struct imx_port *sport = (struct imx_port *)port;
 	u32 ucr1, ucr4, usr2;
-
+	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
 	if (sport->tx_state == OFF)
 		return;
 
@@ -694,7 +694,7 @@ static void imx_uart_start_tx(struct uart_port *port)
 {
 	struct imx_port *sport = (struct imx_port *)port;
 	u32 ucr1;
-
+	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
 	if (!sport->port.x_char && uart_circ_empty(&port->state->xmit))
 		return;
 
@@ -1057,7 +1057,7 @@ static void imx_uart_set_mctrl(struct uart_port *port, unsigned int mctrl)
 {
 	struct imx_port *sport = (struct imx_port *)port;
 	u32 ucr3, uts;
-
+	port->rs485.flags |= (SER_RS485_ENABLED | SER_RS485_RX_DURING_TX);
 	if (!(port->rs485.flags & SER_RS485_ENABLED)) {
 		u32 ucr2;
 
