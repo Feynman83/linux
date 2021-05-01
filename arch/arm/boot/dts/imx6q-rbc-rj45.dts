@@ -6,7 +6,7 @@
  */
 /dts-v1/;
 #include "imx6q.dtsi"
-#include "imx6qdl-rbc-phx2.dtsi"
+#include "imx6qdl-rbc-rj45.dtsi"
 
 / {
 	model = "Xbrother RainbowC i.MX6 Quad Board";
