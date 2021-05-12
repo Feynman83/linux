@@ -1875,8 +1875,8 @@ static const struct tty_operations xr_usb_serial_ops = {
 	.chars_in_buffer =	xr_usb_serial_tty_chars_in_buffer,
 	.break_ctl =		xr_usb_serial_tty_break_ctl,
 	.set_termios =		xr_usb_serial_tty_set_termios,
-	.tiocmget =		xr_usb_serial_tty_tiocmget,
-	.tiocmset =		xr_usb_serial_tty_tiocmset,
+	// .tiocmget =		xr_usb_serial_tty_tiocmget,
+	// .tiocmset =		xr_usb_serial_tty_tiocmset,
 };
 
 /*
