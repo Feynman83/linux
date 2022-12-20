@@ -656,6 +656,11 @@ config GPIO_WCD934X
          This driver is to supprot GPIO block found on the Qualcomm Technologies
 	 Inc WCD9340/WCD9341 Audio Codec.
 
+config GPIO_XBROTHER
+	tristate "GPIO Xbrother Mode"
+	help
+	  This enables GPIO Xbrother mode driver.
+	  
 config GPIO_XGENE
 	bool "APM X-Gene GPIO controller support"
 	depends on ARM64 && OF_GPIO

@@ -26,6 +26,190 @@
 			debounce-interval = <10>;
 		};
 	};
+
+	gpio-xbrother{
+		compatible = "gpio-export";
+		#size-cells = <0>;
+		sys_name = "unicom_su";
+		do1 {
+			gpio-export,name = "do001";
+			gpios = <&tca6424 0 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		do2 {
+			gpio-export,name = "do002";
+			gpios = <&tca6424 1 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		do3 {
+			gpio-export,name = "do003";
+			gpios = <&tca6424 2 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		do4 {
+			gpio-export,name = "do004";
+			gpios = <&tca6424 3 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		di01 {
+			gpio-export,name = "di001";
+			gpios = <&tca6424 4 GPIO_ACTIVE_LOW>;
+		};
+		di02 {
+			gpio-export,name = "di002";
+			gpios = <&tca6424 5 GPIO_ACTIVE_LOW>;
+		};
+		di03 {
+			gpio-export,name = "di003";
+			gpios = <&tca6424 6 GPIO_ACTIVE_LOW>;
+		};
+		di04 {
+			gpio-export,name = "di004";
+			gpios = <&tca6424 7 GPIO_ACTIVE_LOW>;
+		};
+		di05 {
+			gpio-export,name = "di005";
+			gpios = <&tca6424 8 GPIO_ACTIVE_LOW>;
+		};
+		di06 {
+			gpio-export,name = "di006";
+			gpios = <&tca6424 9 GPIO_ACTIVE_LOW>;
+		};
+		di07 {
+			gpio-export,name = "di007";
+			gpios = <&tca6424 10 GPIO_ACTIVE_LOW>;
+		};
+		di08 {
+			gpio-export,name = "di008";
+			gpios = <&tca6424 11 GPIO_ACTIVE_LOW>;
+		};
+		di09 {
+			gpio-export,name = "di009";
+			gpios = <&tca6424 12 GPIO_ACTIVE_LOW>;
+		};
+		di10 {
+			gpio-export,name = "di010";
+			gpios = <&tca6424 13 GPIO_ACTIVE_LOW>;
+		};
+		di11 {
+			gpio-export,name = "di011";
+			gpios = <&tca6424 14 GPIO_ACTIVE_LOW>;
+		};
+		di12 {
+			gpio-export,name = "di012";
+			gpios = <&tca6424 15 GPIO_ACTIVE_LOW>;
+		};
+		di13 {
+			gpio-export,name = "di013";
+			gpios = <&tca6424 16 GPIO_ACTIVE_LOW>;
+		};
+		di14 {
+			gpio-export,name = "di014";
+			gpios = <&tca6424 17 GPIO_ACTIVE_LOW>;
+		};
+		di15 {
+			gpio-export,name = "di015";
+			gpios = <&tca6424 18 GPIO_ACTIVE_LOW>;
+		};
+		di16 {
+			gpio-export,name = "di016";
+			gpios = <&tca6424 19 GPIO_ACTIVE_LOW>;
+		};
+		com1_mode {
+			gpio-export,name = "com1_mode";
+			gpios = <&tca6424 20 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		com2_mode {
+			gpio-export,name = "com2_mode";
+			gpios = <&tca6424 21 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		com3_mode {
+			gpio-export,name = "com3_mode";
+			gpios = <&tca6424 22 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		com4_mode {
+			gpio-export,name = "com4_mode";
+			gpios = <&tca6424 23 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+
+		ai01_mode {
+			gpio-export,name = "ai001_mode";
+			gpios = <&gpio5 7 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		ai02_mode {
+			gpio-export,name = "ai002_mode";
+			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		ai03_mode {
+			gpio-export,name = "ai003_mode";
+			gpios = <&gpio7 0 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		ai04_mode {
+			gpio-export,name = "ai004_mode";
+			gpios = <&gpio7 4 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		ai05_mode {
+			gpio-export,name = "ai005_mode";
+			gpios = <&gpio4 31 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		ai06_mode {
+			gpio-export,name = "ai006_mode";
+			gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		ai07_mode {
+			gpio-export,name = "ai007_mode";
+			gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+		ai08_mode {
+			gpio-export,name = "ai008_mode";
+			gpios = <&gpio7 5 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
+
+		ai01 {
+			gpio-export,name = "ai001";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage0_raw";
+		};
+		ai02 {
+			gpio-export,name = "ai002";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage1_raw";
+		};
+		ai03 {
+			gpio-export,name = "ai003";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage2_raw";
+		};
+		ai04 {
+			gpio-export,name = "ai004";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage3_raw";
+		};
+		ai05 {
+			gpio-export,name = "ai005";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage4_raw";
+		};
+		ai06 {
+			gpio-export,name = "ai006";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage5_raw";
+		};
+		ai07 {
+			gpio-export,name = "ai007";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage6_raw";
+		};
+		ai08 {
+			gpio-export,name = "ai008";
+			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage7_raw";
+		};
+	};
 };
 
 	&uart2 {
