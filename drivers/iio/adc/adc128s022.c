@@ -332,12 +332,12 @@ int _adc128s022_init(struct spi_device *spidev){
 	spidev->mode = SPI_MODE_0;
 	spidev->bits_per_word = 8;
 	spidev->irq = -1;
-	INFO(".");
+	// INFO(".");
 	if(spi_setup(spidev) < 0){
 		INFO("fail!\n");
 		return -1;
 	}
-	INFO(".");
+	// INFO(".");
 	/* prepare spi message to communicate xbrother spi */
 	for(i=0; i<MAX_XFER_NUM; i++){
 		memset(&datp->xfer[i], 0, sizeof datp->xfer[i]);
@@ -351,13 +351,13 @@ int _adc128s022_init(struct spi_device *spidev){
 		datp->xfer[i].cs_change = 1;
 		datp->xfer[i].speed_hz = 100000;
 	}
-	INFO(".");
+	// INFO(".");
 	spi_message_init(&datp->msg);
 	datp->msg.spi = spidev;
 	datp->msg.is_dma_mapped = 0;
 	datp->msg.complete = NULL;
 	datp->msg.context = (void*) &datp;
-	INFO(".");
+	// INFO(".");
 	
 	/* setup first byte: first byte is channel addr (see datasheet) */
 	xbuf = (unsigned char*)datp->xfer[0].tx_buf;
