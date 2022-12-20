@@ -76,6 +76,8 @@ Device Tree:
 #define ADC_CHANNEL7 0x00
 #endif
 
+int ADC128BUF[8*DEV_NUM];
+
 struct adc128s022_dat_t {
 	struct spi_device *spidev;
 	struct spi_message msg;
@@ -157,6 +159,15 @@ int adc128s022_xfer(int id){
 	val6 = adc128s022_conv12(&datp->rx[12]);
 	val7 = adc128s022_conv12(&datp->rx[14]);
 	
+
+	ADC128BUF[id*8+0]=val0;
+	ADC128BUF[id*8+1]=val1;
+	ADC128BUF[id*8+2]=val2;
+	ADC128BUF[id*8+3]=val3;
+	ADC128BUF[id*8+4]=val4;
+	ADC128BUF[id*8+5]=val5;
+	ADC128BUF[id*8+6]=val6;
+	ADC128BUF[id*8+7]=val7;
 	/* generate readable text */
 	//DBG("adc128s022.%d read 1:%d 2:%d 3:%d 4:%d\n", id, xp, yp, aux, ym);
 	/*id *= MAX_XFER_NUM;

@@ -19,8 +19,8 @@
 
 
 
-
-
+extern int adc128s022_xfer(int id);
+extern int ADC128BUF[];
 #define MAX_XBR_ATTR_NUM (64)
 
 
@@ -36,17 +36,20 @@ static struct kobject *xbrother_kobj;
 static int gpio_num = 0;
 static int attr_num = 0;
 
-struct file *analog_file[MAX_XBR_ATTR_NUM];
+
 
 static ssize_t analog_show(struct kobject *kobj, struct kobj_attribute *attr,
 			char *buf)
 {
 	int i;
-	float num=3.14f;
-	int val=(long)(num*1000+0.5f);
+	int val=0;
 	for ( i = gpio_num; i < MAX_XBR_ATTR_NUM; i++)
 	{
 		if (attr==&io_attribute[i]){
+
+			adc128s022_xfer(2);
+			val=ADC128BUF[2*8+i-gpio_num]*8/5;
+
 			return sprintf(buf, "%d.%d%d%d\n", val/1000, (val%1000)/100, (val%100)/10, val%10);
 		}
 	}	
@@ -112,9 +115,9 @@ static int __init of_gpio_export_probe(struct platform_device *pdev)
         return err;
     }
 	for_each_child_of_node(np, cnp) {
-		struct file *f;
+		
 		const char *name = NULL;
-		const char *ai_path=NULL;
+		
 		int gpio;
 		bool dmc;
 		int i;
@@ -125,17 +128,7 @@ static int __init of_gpio_export_probe(struct platform_device *pdev)
 		
 		gpio = of_get_gpio_flags(cnp, i, &of_flags);
 		if(!gpio_is_valid(gpio)){ //ai
-			mm_segment_t old_fs = get_fs();
-			of_property_read_string(cnp, "ai-path", &ai_path);
-    		set_fs(KERNEL_DS);
-			f = filp_open("/sys/bus/iio/devices/iio\:device0/in_voltage0_raw", O_RDONLY, 0);
-			set_fs(old_fs);
-			pr_info("opening %s\n", ai_path);
-			if (IS_ERR(f)) {
-				pr_info("error opening %s\n", ai_path);
-				continue;
-			}
-			analog_file[attr_num]=f;
+			
 			io_attribute[attr_num].attr.name=name;
 			io_attribute[attr_num].attr.mode= VERIFY_OCTAL_PERMISSIONS(0444);
 			io_attribute[attr_num].show=analog_show;
