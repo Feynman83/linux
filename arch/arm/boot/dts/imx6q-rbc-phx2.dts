@@ -85,11 +85,11 @@
 		};
 		di09 {
 			gpio-export,name = "di009";
-			gpios = <&tca6424 12 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 17 GPIO_ACTIVE_LOW>;
 		};
 		di10 {
 			gpio-export,name = "di010";
-			gpios = <&tca6424 13 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 15 GPIO_ACTIVE_LOW>;
 		};
 		di11 {
 			gpio-export,name = "di011";
@@ -97,23 +97,23 @@
 		};
 		di12 {
 			gpio-export,name = "di012";
-			gpios = <&tca6424 15 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 12 GPIO_ACTIVE_LOW>;
 		};
 		di13 {
 			gpio-export,name = "di013";
-			gpios = <&tca6424 16 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 19 GPIO_ACTIVE_LOW>;
 		};
 		di14 {
 			gpio-export,name = "di014";
-			gpios = <&tca6424 17 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 18 GPIO_ACTIVE_LOW>;
 		};
 		di15 {
 			gpio-export,name = "di015";
-			gpios = <&tca6424 18 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 16 GPIO_ACTIVE_LOW>;
 		};
 		di16 {
 			gpio-export,name = "di016";
-			gpios = <&tca6424 19 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 13 GPIO_ACTIVE_LOW>;
 		};
 		com1_mode {
 			gpio-export,name = "com1_mode";
