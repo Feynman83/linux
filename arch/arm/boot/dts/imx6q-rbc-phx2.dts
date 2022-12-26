@@ -117,7 +117,7 @@
 		};
 		com1_mode {
 			gpio-export,name = "com1_mode";
-			gpios = <&tca6424 20 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 23 GPIO_ACTIVE_LOW>;
 			gpio-export,output = <0>;
 		};
 		com2_mode {
@@ -127,12 +127,12 @@
 		};
 		com3_mode {
 			gpio-export,name = "com3_mode";
-			gpios = <&tca6424 22 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 20 GPIO_ACTIVE_LOW>;
 			gpio-export,output = <0>;
 		};
 		com4_mode {
 			gpio-export,name = "com4_mode";
-			gpios = <&tca6424 23 GPIO_ACTIVE_LOW>;
+			gpios = <&tca6424 22 GPIO_ACTIVE_LOW>;
 			gpio-export,output = <0>;
 		};
 
