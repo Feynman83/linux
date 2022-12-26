@@ -43,12 +43,18 @@ static ssize_t analog_show(struct kobject *kobj, struct kobj_attribute *attr,
 {
 	int i;
 	int val=0;
+	int gpio_val=0;
 	for ( i = gpio_num; i < MAX_XBR_ATTR_NUM; i++)
 	{
 		if (attr==&io_attribute[i]){
 
 			adc128s022_xfer(2);
-			val=ADC128BUF[2*8+i-gpio_num]*8/5;
+			gpio_val=gpio_get_value_cansleep(attr_gpios[i-8]);
+			if(gpio_val==0){ //current mode
+				val=ADC128BUF[2*8+i-gpio_num]*10000/1758;
+			}else{ //voltage mode
+				val=ADC128BUF[2*8+i-gpio_num]*10/7;
+			}
 
 			return sprintf(buf, "%d.%d%d%d\n", val/1000, (val%1000)/100, (val%100)/10, val%10);
 		}
