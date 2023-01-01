@@ -176,7 +176,11 @@
 			gpios = <&gpio7 5 GPIO_ACTIVE_LOW>;
 			gpio-export,output = <1>;
 		};
-
+		ai09_mode {
+			gpio-export,name = "ai201_mode";
+			gpios = <&gpio7 6 GPIO_ACTIVE_LOW>;
+			gpio-export,output = <0>;
+		};
 		ai01 {
 			gpio-export,name = "ai001";
 			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage0_raw";
@@ -208,6 +212,12 @@
 		ai08 {
 			gpio-export,name = "ai008";
 			ai-path = "/sys/bus/iio/devices/iio:device0/in_voltage7_raw";
+		};
+		ai09 {
+			gpio-export,name = "ai201";
+		};
+		ai10 {
+			gpio-export,name = "ai202";
 		};
 	};
 };
