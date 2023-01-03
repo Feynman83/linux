@@ -50,7 +50,7 @@ static ssize_t analog_show(struct kobject *kobj, struct kobj_attribute *attr,
 
 			if (i-gpio_num<8) {
 				adc128s022_xfer(2);
-				gpio_val=gpio_get_value_cansleep(attr_gpios[i-8]);
+				gpio_val=gpio_get_value_cansleep(attr_gpios[i-9]);
 				if(gpio_val==0){ //current mode
 					val=ADC128BUF[2*8+i-gpio_num]*10000/1758;
 				}else{ //voltage mode
@@ -81,6 +81,10 @@ static ssize_t gpio_show(struct kobject *kobj, struct kobj_attribute *attr,
 	for ( i = 0; i < gpio_num; i++)
 	{
 		if (attr==&io_attribute[i]){
+			if(i>=24){
+				return sprintf(buf, "%d\n", 1-gpio_get_value_cansleep(attr_gpios[i]));
+			}
+			
 			return sprintf(buf, "%d\n", gpio_get_value_cansleep(attr_gpios[i]));
 		}
 	}	
@@ -99,7 +103,12 @@ static ssize_t gpio_store(struct kobject *kobj, struct kobj_attribute *attr,
 	for ( i = 0; i < gpio_num; i++)
 	{
 		if (attr==&io_attribute[i]){
-			gpio_set_value_cansleep(attr_gpios[i], !!var);
+			if(i>=24){
+				gpio_set_value_cansleep(attr_gpios[i],1-!!var);
+			}else{
+				gpio_set_value_cansleep(attr_gpios[i], !!var);
+			}
+			
 			break;
 		}
 	}	

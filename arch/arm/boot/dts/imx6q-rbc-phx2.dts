@@ -138,42 +138,42 @@
 
 		ai01_mode {
 			gpio-export,name = "ai001_mode";
-			gpios = <&gpio5 7 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio5 7 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai02_mode {
 			gpio-export,name = "ai002_mode";
-			gpios = <&gpio5 8 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio5 8 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai03_mode {
 			gpio-export,name = "ai003_mode";
-			gpios = <&gpio7 0 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio7 0 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai04_mode {
 			gpio-export,name = "ai004_mode";
-			gpios = <&gpio7 4 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio7 4 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai05_mode {
 			gpio-export,name = "ai005_mode";
-			gpios = <&gpio4 31 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio4 31 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai06_mode {
 			gpio-export,name = "ai006_mode";
-			gpios = <&gpio5 5 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio5 5 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai07_mode {
 			gpio-export,name = "ai007_mode";
-			gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio5 6 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai08_mode {
 			gpio-export,name = "ai008_mode";
-			gpios = <&gpio7 5 GPIO_ACTIVE_LOW>;
+			gpios = <&gpio7 5 GPIO_ACTIVE_HIGH>;
 			gpio-export,output = <1>;
 		};
 		ai09_mode {
