@@ -487,7 +487,7 @@ int xr_usb_serial_set_flow_mode(struct xr_usb_serial *xr_usb_serial, struct tty_
 	{
 		//dev_dbg(&xr_usb_serial->control->dev, "xr_usb_serial_set_flow_mode:none\n");
 		flow      = UART_FLOW_MODE_NONE;
-		gpio_mode = UART_GPIO_MODE_SEL_GPIO;
+		gpio_mode = UART_GPIO_MODE_SEL_AUTO485;
 	}
 	
 	if((xr_usb_serial->DeviceProduct == 0x1420)||
@@ -813,9 +813,10 @@ int xr_usb_serial_pre_setup(struct xr_usb_serial *xr_usb_serial)
 	if(xr_usb_serial->reg_map.uart_custom_driver)
 		xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_custom_driver, 1);
 
-	xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_mode_addr, 0);  
-	xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_dir_addr, 0x28);  
-	xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_set_addr, UART_GPIO_SET_DTR | UART_GPIO_SET_RTS); 
+	xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_mode_addr, 0x0b);  // Auto RS-485 Half-Duplex Control
+	xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_dir_addr, 0x00);  
+	xr_usb_serial_set_reg(xr_usb_serial,xr_usb_serial->reg_map.uart_flow_addr,0x00);
+	// xr_usb_serial_set_reg(xr_usb_serial, xr_usb_serial->reg_map.uart_gpio_set_addr, UART_GPIO_SET_DTR | UART_GPIO_SET_RTS); 
 	
 	return ret;   
 }

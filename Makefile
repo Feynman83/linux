@@ -369,7 +369,7 @@ include scripts/subarch.include
 
 # ARCH		?= $(SUBARCH)
 ARCH = arm
-CROSS_COMPILE = arm-linux-gnueabihf-
+CROSS_COMPILE = /opt/armv7-eabihf--glibc--stable-2020.08-1/bin/arm-linux-
 
 # Architecture as present in compile.h
 UTS_MACHINE 	:= $(ARCH)

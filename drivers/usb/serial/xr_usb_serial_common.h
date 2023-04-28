@@ -192,6 +192,7 @@ struct xr_usb_serial {
 
 #define UART_GPIO_MODE_SEL_GPIO  	0x0
 #define UART_GPIO_MODE_SEL_RTS_CTS	0x1
+#define UART_GPIO_MODE_SEL_AUTO485	0x0b
 
 #define XR2280x_FUNC_MGR_OFFSET 	0x40
 
