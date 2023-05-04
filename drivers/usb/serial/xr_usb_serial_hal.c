@@ -523,11 +523,17 @@ int xr_usb_serial_send_break(struct xr_usb_serial *xr_usb_serial, int state)
 }
 
 #define URM_REG_BLOCK          	4
+
 #define URM_ENABLE_BASE        	0x010
 #define URM_ENABLE_0_TX        	0x001
 #define URM_ENABLE_0_RX        	0x002
 #define URM_RESET_RX_FIFO_BASE	0x018
 #define URM_RESET_TX_FIFO_BASE	0x01C
+
+
+#define URC_REG_BLOCK          	(0x66)   //Custom UART control registers
+#define URC_LOW_LATENCY_BASE    (0x04)
+
 
 int xr_usb_serial_enable(struct xr_usb_serial *xr_usb_serial)
 {
@@ -546,7 +552,11 @@ int xr_usb_serial_enable(struct xr_usb_serial *xr_usb_serial)
 	}
 	else 
 	{
+		ret = xr_usb_serial_set_reg_ext(xr_usb_serial,URM_REG_BLOCK,URM_ENABLE_BASE + channel,URM_ENABLE_0_TX);
 		ret = xr_usb_serial_set_reg(xr_usb_serial,xr_usb_serial->reg_map.uart_enable_addr,UART_ENABLE_TX | UART_ENABLE_RX);
+		ret = xr_usb_serial_set_reg_ext(xr_usb_serial,URM_REG_BLOCK,URM_ENABLE_BASE + channel,URM_ENABLE_0_TX | URM_ENABLE_0_RX);
+		ret = xr_usb_serial_set_reg_ext(xr_usb_serial,URC_REG_BLOCK,URC_LOW_LATENCY_BASE + (channel<<3),0);
+	
 	}
 	
 	return ret;
