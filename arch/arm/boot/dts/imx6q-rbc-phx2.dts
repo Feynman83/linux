@@ -219,6 +219,12 @@
 		ai10 {
 			gpio-export,name = "ai202";
 		};
+		ai11 {
+			gpio-export,name = "ai203";
+		};
+		ai12 {
+			gpio-export,name = "ai204";
+		};
 	};
 };
 

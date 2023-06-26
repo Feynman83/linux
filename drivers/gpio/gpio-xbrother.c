@@ -15,7 +15,7 @@
 #include <linux/pinctrl/pinctrl.h>
 #include <linux/slab.h>
 #include <linux/platform_device.h>
-
+#include <linux/delay.h>
 
 
 
@@ -44,6 +44,7 @@ static ssize_t analog_show(struct kobject *kobj, struct kobj_attribute *attr,
 	int i;
 	int val=0;
 	int gpio_val=0;
+	unsigned int bat_idx=0;
 	for ( i = gpio_num; i < MAX_XBR_ATTR_NUM; i++)
 	{
 		if (attr==&io_attribute[i]){
@@ -57,8 +58,12 @@ static ssize_t analog_show(struct kobject *kobj, struct kobj_attribute *attr,
 					val=ADC128BUF[2*8+i-gpio_num]*10/7;
 				}
 			}else{
+				bat_idx=i-gpio_num-8;
+				
+				gpio_set_value_cansleep(attr_gpios[gpio_num-1],(bat_idx>>1)&0x01);
+				msleep(100);
 				adc128s022_xfer(0);
-				if(i-gpio_num-8==0){
+				if((bat_idx&0x01) ==0){
 					val=ADC128BUF[0]*1000/63;
 				}else{
 					val=ADC128BUF[1]*100000/3276;
